@@ -16,11 +16,11 @@ int numberOfPoints = 10;
 
 List<ChartData> generateCharts() {
   var chart1 =
-      ChartData("5km 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
+      ChartData("№1 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
   var chart2 =
-      ChartData("10km 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
+      ChartData("№2 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
   var chart3 =
-      ChartData("12.5km 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
+      ChartData("№3 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
   return List.of([chart1, chart2, chart3]);
 }
 

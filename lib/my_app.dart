@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
               fontSize: 36.0,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w200),
-          bodyText2: TextStyle(fontSize: 24.0, fontFamily: 'Hind'),
+          bodyText2: TextStyle(fontSize: 24.0),
         ),
       ),
       home: MainPage(),
@@ -99,7 +99,7 @@ class _MainPageState extends State<MainPage> {
           backgroundColor: Colors.transparent,
           title: Text(
             "Chart Animation",
-            style: GoogleFonts.dekko(),
+            style: GoogleFonts.changa(),
           ),
           actions: <Widget>[
             Consumer<ChartDataNotifier>(
@@ -230,60 +230,57 @@ class ChartInfoPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: RichText(
-                    text: TextSpan(
-                        style: GoogleFonts.raleway(
-                            fontWeight: FontWeight.w400,
-                            fontSize: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                .fontSize),
-                        children: [
-                          TextSpan(
-                              text: chartdata.title.split(" ").first + " "),
-                          TextSpan(
-                              text: chartdata.title.split(" ").last,
-                              style: GoogleFonts.josefinSlab(
-                                  decoration: TextDecoration.underline))
-                        ]),
-                  ),
+            child: Row(children: [
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: RichText(
+                  text: TextSpan(
+                      style: GoogleFonts.raleway(
+                          fontSize:
+                              Theme.of(context).textTheme.bodyText2.fontSize),
+                      children: [
+                        TextSpan(text: chartdata.title.split(" ").first + " "),
+                      ]),
                 ),
-              ],
-            ),
+              ),
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: RichText(
+                  text: TextSpan(
+                      style: GoogleFonts.raleway(
+                          fontSize:
+                              Theme.of(context).textTheme.bodyText2.fontSize),
+                      children: [
+                        TextSpan(
+                            text: chartdata.title.split(" ").last,
+                            style: GoogleFonts.josefinSlab(
+                                decoration: TextDecoration.underline))
+                      ]),
+                ),
+              ),
+            ]),
           ),
           Container(
             height: chart_height(context),
           ),
           Expanded(
             child: Container(
-              color: Colors.red,
+              color: Colors.white12,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: RichText(
-                      text: TextSpan(
-                          style: GoogleFonts.raleway(
-                              fontWeight: FontWeight.w400,
-                              fontSize: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  .fontSize),
-                          children: [
-                            TextSpan(
-                                text: chartdata.title.split(" ").first + " "),
-                            TextSpan(
-                                text: chartdata.title.split(" ").last,
-                                style: GoogleFonts.josefinSlab(
-                                    decoration: TextDecoration.underline))
-                          ]),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 4),
+                      child: ListView.builder(
+                        itemBuilder: (_, index) => Card(
+                            child: Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Text(chartdata.points[index].name))),
+                        itemCount: chartdata.points.length,
+                      ),
                     ),
                   ),
                 ],
