@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:chart_animate_flutter/chart_data.dart';
+import 'package:chart_animate_flutter/point.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -126,9 +127,9 @@ class _MainPageState extends State<MainPage> {
                   physics: ClampingScrollPhysics(),
                   controller: _pageController,
                   children: <Widget>[
-                    ChartInfoPage(nofiier._chartdata[0]),
-                    ChartInfoPage(nofiier._chartdata[1]),
-                    ChartInfoPage(nofiier._chartdata[2]),
+                    ChartInfoPage(0),
+                    ChartInfoPage(1),
+                    ChartInfoPage(2),
                   ],
                 );
               },
@@ -220,12 +221,13 @@ class ChartPainter extends CustomPainter {
 }
 
 class ChartInfoPage extends StatelessWidget {
-  var chartdata = ChartData();
-
-  ChartInfoPage(this.chartdata);
+  var i = 0;
+  ChartInfoPage(this.i);
 
   @override
   Widget build(BuildContext context) {
+    final data = Provider.of<ChartDataNotifier>(context);
+    var chartdata = data._chartdata[i];
     return Center(
       child: Column(
         children: <Widget>[
@@ -275,11 +277,8 @@ class ChartInfoPage extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(top: 4),
                       child: ListView.builder(
-                        itemBuilder: (_, index) => Card(
-                            child: Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: Text(chartdata.points[index].name))),
-                        itemCount: chartdata.points.length,
+                        itemBuilder: (_, index) => (index == 0)? PointCard("Name", "X", "Y") : PointCard(chartdata.points[index-1].name,chartdata.points[index-1].x.round().toString(),chartdata.points[index-1].y.round().toString()),
+                        itemCount: chartdata.points.length+1,
                       ),
                     ),
                   ),
@@ -291,4 +290,54 @@ class ChartInfoPage extends StatelessWidget {
       ),
     );
   }
+}
+class PointCard extends StatelessWidget{
+  String title;
+  String x;
+  String y;
+  PointCard(this.title,this.x,this.y);
+
+
+  @override
+  Widget build(BuildContext context) {
+      return  Card(
+        color: Colors.black54,
+        child: IntrinsicHeight(
+          child: Row(
+            children: <Widget>[
+              Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(title)),
+              Spacer(),
+              VerticalDivider(
+                color: Colors.white,
+                thickness: 1.0,
+              ),
+              Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Container(
+                    width: 50,
+                    child: Center(
+                      child: Text(x),
+                    ),
+                  )),
+              VerticalDivider(
+                width: 2.0,
+                color: Colors.white,
+                thickness: 1.0,
+              ),
+              Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Container(
+                    width: 50,
+                    child: Center(
+                      child: Text(y),
+                    ),
+                  )),
+            ],
+          ),
+        ),
+      );
+  }
+
 }

@@ -18,9 +18,9 @@ List<ChartData> generateCharts() {
   var chart1 =
       ChartData("№1 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
   var chart2 =
-      ChartData("№2 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
+      ChartData("№2 11-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
   var chart3 =
-      ChartData("№3 13-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
+      ChartData("№3 08-02-2020", "axisX", "axisY", getRandomPoints(numberOfPoints));
   return List.of([chart1, chart2, chart3]);
 }
 
