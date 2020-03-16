@@ -2,6 +2,6 @@
 
 Simple chart animation done without using animation controller. 
 
-## Getting Started
+##
 
-![](out.gif)
+![](https://imgur.com/W5HSuZc)
