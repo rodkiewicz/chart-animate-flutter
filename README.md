@@ -4,4 +4,4 @@ Simple chart animation done without using animation controller.
 
 ##
 
-![](https://imgur.com/W5HSuZc)
+![](out.gif)
